@@ -77,26 +77,32 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <motion.button
-                  onClick={scrollToProjectTypes}
-                  className="rounded-md bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 transition-all duration-300"
-                  whileHover={{ 
-                    scale: 1.08,
-                    boxShadow: "0 20px 40px rgba(99, 102, 241, 0.4)",
-                    y: -2
-                  }}
-                  whileTap={{ 
-                    scale: 0.95,
-                    y: 0
-                  }}
-                  transition={{ 
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20
-                  }}
+                <motion.div
+                  className="text-white"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.0 }}
                 >
-                  Başlayalım
-                </motion.button>
+                  <motion.svg 
+                    className="w-10 h-10" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ 
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M7 13l5 5 5-5" 
+                    />
+                  </motion.svg>
+                </motion.div>
               </motion.div>
             </div>
           </div>
