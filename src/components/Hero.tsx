@@ -4,27 +4,7 @@ export default function Hero() {
   const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
 
-  const scrollToProjectTypes = () => {
-    const projectTypesElement = document.getElementById('project-types')
-    if (projectTypesElement) {
-      const headerHeight = 80
-      const elementTop = projectTypesElement.offsetTop - headerHeight
-      
-      // Daha yavaş ve etkileyici scroll
-      window.scrollTo({
-        top: elementTop,
-        behavior: 'smooth'
-      })
-      
-      // Scroll tamamlandıktan sonra hafif bir bounce efekti
-      setTimeout(() => {
-        projectTypesElement.style.transform = 'scale(1.02)'
-        setTimeout(() => {
-          projectTypesElement.style.transform = 'scale(1)'
-        }, 200)
-      }, 1000)
-    }
-  }
+
 
   return (
     <div className="bg-gray-900 relative overflow-hidden">
