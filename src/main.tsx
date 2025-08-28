@@ -5,10 +5,10 @@ import './index.css'
 import Layout from './components/Layout.tsx'
 import Hero from './components/Hero.tsx'
 import About from './pages/About.tsx'
-import Services from './pages/Services.tsx'
-import Products from './pages/Products.tsx'
-import Pricing from './pages/Pricing.tsx'
-import Resources from './pages/Resources.tsx'
+import Completed from './pages/Completed.tsx'
+import Ongoing from './pages/Ongoing.tsx'
+import Planned from './pages/Planned.tsx'
+import Contact from './pages/Contact.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -17,10 +17,10 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<Layout />}>
           <Route index element={<Hero />} />
           <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/resources" element={<Resources />} />
+          <Route path="/completed" element={<Completed />} />
+          <Route path="/ongoing" element={<Ongoing />} />
+          <Route path="/planned" element={<Planned />} />
+          <Route path="/contact" element={<Contact />} />
         </Route>
       </Routes>
     </BrowserRouter>
