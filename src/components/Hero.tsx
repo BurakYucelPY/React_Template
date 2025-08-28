@@ -1,23 +1,42 @@
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import ProjectTypes from './ProjectTypes'
 import Features from './Features'
 
 export default function Hero() {
+  const { scrollYProgress } = useScroll()
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+
+  const scrollToProjectTypes = () => {
+    const projectTypesElement = document.getElementById('project-types')
+    if (projectTypesElement) {
+      const headerHeight = 80
+      const elementTop = projectTypesElement.offsetTop - headerHeight
+      
+      // Daha yavaş ve etkileyici scroll
+      window.scrollTo({
+        top: elementTop,
+        behavior: 'smooth'
+      })
+      
+      // Scroll tamamlandıktan sonra hafif bir bounce efekti
+      setTimeout(() => {
+        projectTypesElement.style.transform = 'scale(1.02)'
+        setTimeout(() => {
+          projectTypesElement.style.transform = 'scale(1)'
+        }, 200)
+      }, 1000)
+    }
+  }
+
   return (
     <>
       <div className="bg-gray-900 relative overflow-hidden">
-        {/* Background Image with floating animation */}
+        {/* Background Image with parallax animation */}
         <motion.div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
           style={{
-            backgroundImage: `url('/pexels-crab-lens-179881567-20020483.jpg')`
-          }}
-          animate={{
-            y: [0, -10, 0],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
+            backgroundImage: `url('/pexels-crab-lens-179881567-20020483.jpg')`,
+            y
           }}
         />
         {/* Content overlay */}
@@ -36,20 +55,6 @@ export default function Hero() {
               />
             </div>
             <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-              <motion.div 
-                className="hidden sm:mb-8 sm:flex sm:justify-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
-                  Announcing our next round of funding.{' '}
-                  <a href="#" className="font-semibold text-indigo-400">
-                    <span aria-hidden="true" className="absolute inset-0" />
-                    Read more <span aria-hidden="true">&rarr;</span>
-                  </a>
-                </div>
-              </motion.div>
               <div className="text-center">
                 <motion.h1 
                   className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl"
@@ -57,7 +62,7 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  Data to enrich your online business
+                  GROFT İnşaat ile Geleceği İnşa Ediyoruz
                 </motion.h1>
                 <motion.p 
                   className="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8"
@@ -65,8 +70,9 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
                 >
-                  Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-                  fugiat veniam occaecat.
+                  Türkiye'nin önde gelen inşaat firmalarından biri olarak, yenilikçi tasarım anlayışı ve 
+                  mükemmel işçilik ile yaşam alanları yaratıyoruz. Kalite ve güvenilirlik odaklı yaklaşımımızla 
+                  projelerinizi hayata geçiriyoruz.
                 </motion.p>
                 <motion.div 
                   className="mt-10 flex items-center justify-center"
@@ -74,14 +80,26 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
-                  <motion.a
-                    href="#"
-                    className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <motion.button
+                    onClick={scrollToProjectTypes}
+                    className="rounded-md bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 transition-all duration-300"
+                    whileHover={{ 
+                      scale: 1.08,
+                      boxShadow: "0 20px 40px rgba(99, 102, 241, 0.4)",
+                      y: -2
+                    }}
+                    whileTap={{ 
+                      scale: 0.95,
+                      y: 0
+                    }}
+                    transition={{ 
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20
+                    }}
                   >
-                    Get started
-                  </motion.a>
+                    Başlayalım
+                  </motion.button>
                 </motion.div>
               </div>
             </div>
@@ -100,6 +118,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
+      <ProjectTypes />
       <Features />
     </>
   )

@@ -1,117 +1,77 @@
-import { motion } from 'framer-motion'
-import { HomeIcon, BuildingOfficeIcon, BuildingStorefrontIcon, BuildingOffice2Icon } from '@heroicons/react/24/outline'
+import { WrenchScrewdriverIcon, ShieldCheckIcon, ClockIcon } from '@heroicons/react/24/outline'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 const features = [
   {
-    name: 'Konut Projeleri',
-    description:
-      'Modern yaşam alanları tasarlıyoruz. Ailelerin ihtiyaçlarına uygun, konforlu ve güvenli konut projeleri ile hayalinizdeki eve kavuşun.',
-    icon: HomeIcon,
+    name: 'Kaliteli Malzeme',
+    description: 'En yüksek kalitede malzemeler kullanarak projelerinizi güvenle inşa ediyoruz. Dayanıklı ve uzun ömürlü yapılar için premium ürünler tercih ediyoruz.',
+    icon: WrenchScrewdriverIcon,
   },
   {
-    name: 'Villa Projeleri',
-    description:
-      'Lüks ve özel villa projelerimizle yaşam standartlarınızı yükseltin. Özel tasarım, kaliteli malzeme ve mükemmel işçilik garantisi.',
-    icon: BuildingOfficeIcon,
+    name: 'Güvenli İnşaat',
+    description: 'İş güvenliği standartlarına tam uyum sağlayarak, güvenli ve risk-free inşaat süreçleri yürütüyoruz. Müşteri ve çalışan güvenliği önceliğimizdir.',
+    icon: ShieldCheckIcon,
   },
   {
-    name: 'Toplu Yaşam Alanları',
-    description:
-      'Sosyal yaşamı destekleyen, yeşil alanları bol, modern toplu konut projeleri. Komşuluk ilişkilerini güçlendiren tasarımlar.',
-    icon: BuildingOffice2Icon,
-  },
-  {
-    name: 'Ticari Projeler',
-    description:
-      'İş dünyasının ihtiyaçlarına yönelik ofis, plaza ve ticari merkez projeleri. Yatırımınızın değerini artıran stratejik konumlar.',
-    icon: BuildingStorefrontIcon,
+    name: 'Zamanında Teslim',
+    description: 'Projelerinizi söz verdiğimiz tarihte teslim ediyoruz. Profesyonel ekip ve etkin planlama ile zamanında tamamlanan projeler garantisi veriyoruz.',
+    icon: ClockIcon,
   },
 ]
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6
-    }
-  }
-}
-
 export default function Features() {
+  const { scrollYProgress } = useScroll()
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
+
   return (
-    <div className="bg-gray-900 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <motion.div 
-          className="mx-auto max-w-2xl lg:text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-base/7 font-semibold text-indigo-400">Kaliteli İnşaat</h2>
-          <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl lg:text-balance">
-            Hayalinizdeki Projeleri Gerçeğe Dönüştürüyoruz
-          </p>
-          <p className="mt-6 text-lg/8 text-gray-300">
-            20 yılı aşkın deneyimimizle, modern mimari anlayışı ve kaliteli malzeme kullanımı ile 
-            yaşam alanlarınızı inşa ediyoruz. Güvenilir, sürdürülebilir ve estetik projeler.
-          </p>
-        </motion.div>
-        <motion.div 
-          className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-            {features.map((feature) => (
-              <motion.div 
-                key={feature.name} 
-                className="relative pl-16"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <dt className="text-base/7 font-semibold text-white">
-                  <div className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-indigo-500">
-                    <feature.icon aria-hidden="true" className="size-6 text-white" />
-                  </div>
-                  {feature.name}
-                </dt>
-                <dd className="mt-2 text-base/7 text-gray-400">{feature.description}</dd>
-              </motion.div>
-            ))}
-          </dl>
-        </motion.div>
-        <motion.div 
-          className="mt-16 flex justify-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <motion.a 
-            href="#" 
-            className="text-sm/6 font-semibold text-white"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Learn more <span aria-hidden="true">→</span>
-          </motion.a>
-        </motion.div>
+    <div 
+      className="py-24 sm:py-32 relative overflow-hidden"
+      style={{
+        backgroundImage: `url('/pexels-mike-van-schoonderwalt-1884800-5505119.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-gray-900 opacity-80"></div>
+      
+      {/* Content overlay */}
+      <div className="relative z-10">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:max-w-4xl">
+            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Neden Bizi Tercih Etmelisiniz?
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-gray-300">
+              20 yılı aşkın deneyimimizle, kaliteli malzeme, güvenli inşaat ve zamanında teslim 
+              garantisi ile hayalinizdeki projeleri gerçeğe dönüştürüyoruz.
+            </p>
+          </div>
+          
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+              {features.map((feature) => (
+                <div key={feature.name} className="flex flex-col">
+                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-white">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                      <feature.icon aria-hidden="true" className="h-6 w-6 text-white" />
+                    </div>
+                    {feature.name}
+                  </dt>
+                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-300">
+                    <p className="flex-auto">{feature.description}</p>
+                    <p className="mt-6">
+                      <a href="#" className="text-sm font-semibold leading-6 text-indigo-400 hover:text-indigo-300">
+                        Detayları Gör →
+                      </a>
+                    </p>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
       </div>
     </div>
   )
