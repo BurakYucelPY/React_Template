@@ -42,18 +42,10 @@ const itemVariants = {
 
 export default function WhyChooseUs() {
   const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
 
   return (
-    <div 
-      className="py-24 sm:py-32 relative overflow-hidden"
-      style={{
-        backgroundImage: `url('/pexels-mike-van-schoonderwalt-1884800-5505119.jpg')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
-    >
+    <div className="bg-gray-900 relative overflow-hidden">
       {/* Background Image with parallax effect */}
       <motion.div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
@@ -63,12 +55,9 @@ export default function WhyChooseUs() {
         }}
       />
       
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gray-900 opacity-80"></div>
-      
       {/* Content overlay */}
       <div className="relative z-10">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 py-48 sm:py-64 lg:px-8">
           <motion.div 
             className="mx-auto max-w-2xl lg:max-w-4xl"
             initial={{ opacity: 0, y: 30 }}
