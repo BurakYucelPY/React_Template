@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import Layout from './components/Layout.tsx'
-import Hero from './components/Hero.tsx'
+import Home from './pages/Home.tsx'
 import About from './pages/About.tsx'
 import Completed from './pages/Completed.tsx'
 import Ongoing from './pages/Ongoing.tsx'
@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Hero />} />
+          <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/completed" element={<Completed />} />
           <Route path="/ongoing" element={<Ongoing />} />
