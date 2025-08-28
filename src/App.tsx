@@ -1,10 +1,10 @@
 import './App.css'
-import { HeaderDropdownSimple } from './components/HeaderDropdownSimple'
+import Hero from './components/Hero'
 
 function App() {
   return (
     <div className="App">
-      <HeaderDropdownSimple />
+      <Hero />
     </div>
   )
 }
